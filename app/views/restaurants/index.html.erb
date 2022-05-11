@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Restaurants</h1>
+  <div class="my-3 bg-info p-3">
+    <%= link_to '🍽️ Add restaurant', new_restaurant_path %>
+  </div>
+  <% @restaurants.each do |restaurant| %>
+    <div class="card mb-2 p-3">
+      <h3><%= link_to restaurant.name, restaurant_path(restaurant) %></h3>
+      <p class="my-0"><%= restaurant.address %></p>
+    </div>
+  <% end %>
+</div>

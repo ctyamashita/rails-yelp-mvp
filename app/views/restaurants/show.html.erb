@@ -1,0 +1,26 @@
+<div style="padding: 32px; background: linear-gradient(130deg, rgba(255, 255, 255, 1) 15%, rgba(255, 255, 255, 0) 70%), url('https://source.unsplash.com/random/?food'); background-size: cover">
+<h1><%= @restaurant.name %></h1>
+<h3><%= @restaurant.category %></h3>
+<p><%= @restaurant.address %></p>
+</div>
+
+<div class='container'>
+  <div class="my-3 bg-info p-3">
+    <%= link_to '◀ Back', restaurants_path %>
+    <span> | </span>
+    <%= link_to '📝 Add a Review', new_restaurant_review_path(@restaurant) %>
+  </div>
+  <% if @restaurant.reviews.any? %>
+    <% @restaurant.reviews.each do |review| %>
+      <div class="card p-3 mt-2">
+        <p><%= '⭐' * review.rating %></p>
+        <p><%= review.content %></p>
+        <%= link_to 'delete', review_path(review), method:'delete' %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="card p-3 mt-2">
+      <%= link_to 'Be the first one to review this restaurant!', new_restaurant_review_path(@restaurant) %>
+    </div>
+  <% end %>
+</div>
